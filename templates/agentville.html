@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<title>Agentville</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<h1>Agentville</h1>
+
+<h2>Create a New Agent</h2>
+<form action="/create_agent" method="POST">
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required />
+
+<label for="age">Age:</label>
+<input type="number" id="age" name="age" required />
+
+<label for="city">City:</label>
+<input type="text" id="city" name="city" required />
+
+<input type="submit" value="Create" />
+</form>
+
+<br>
+
+<h2>List of Agents</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>City</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for agent in agents %}
+<tr>
+<td>{{ agent.id }}</td>
+<td>{{ agent.name }}</td>
+<td>{{ agent.age }}</td>
+<td>{{ agent.city }}</td>
+<td>
+<a href="/edit_agent/{{ agent.id }}">Edit</a> |
+<a href="/delete_agent/{{ agent.id }}" onclick="return confirm('Are you sure?');">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</body>
+
+</html>
+
